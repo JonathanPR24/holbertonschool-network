@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Script to ping an IP address and display the results
 
 if [[ $# -eq 0 ]]; then
