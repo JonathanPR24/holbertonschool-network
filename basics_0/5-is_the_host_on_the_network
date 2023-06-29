@@ -8,8 +8,7 @@ fi
 
 ip_address=$1
 
-# Ping the IP address 5 times and capture the output
-ping_output=$(ping -c 5 "$ip_address")
-
-# Print the captured output
-echo "$ping_output" | sed 's/^\(PING.*\)$/\1\n/' | sed 's/^\(---.*---\)$/\1\n/'
+# Ping the IP address 5 times
+for (( i=1; i<=5; i++ )); do
+    ping -c 1 "$ip_address"
+done
