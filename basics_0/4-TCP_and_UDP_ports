@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script to display listening ports with corresponding PIDs and programs
+
+sudo ss -ltpn
