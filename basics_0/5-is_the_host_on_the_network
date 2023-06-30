@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 # Script to ping an IP address and display the results
 
-if [ "$#" -ne 1 ]; then
+
+if [ $# -eq 0 ]; then
   echo "Usage: $(basename "$0") {IP_ADDRESS}"
   exit 1
 fi
 
 ip_address="$1"
 
-ping -c 5 "$ip_address" | awk '{print $0} NR>=2 && NR<=6 {print substr($0, index($0,$5))}' | sed 's/icmp_seq=\([0-9]\+\)/\1/g' | sed 's/.*time=\([^ ]\+\) .*/\1 ms/' | echo "PING $ip_address ($ip_address) bytes" && echo && echo "--- $ip_address ping ---" && awk 'BEGIN { min=avg=max=0 } {sum+=$1; if (min==0 || $1<min) min=$1; if ($1>max) max=$1; } END { avg=sum/NR; print "rtt min/avg/max/mdev =", min"/"avg"/"max"/"sum/NR }'
+ping_result=$(ping -c 5 "$ip_address")
+
+echo "$ping_result"
